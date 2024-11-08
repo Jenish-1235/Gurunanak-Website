@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+
+    <script src="https://preline.co/assets/vendor/preline/dist/index.js?v=2.5.0"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        section {
+            padding-top: 100px !important;
+            padding-bottom: 100px !important;
+        }
+
+        @media (max-width: 1024px) {
+            section {
+                padding-top: 64px !important;
+                padding-bottom: 64px !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
+        }
+
+        html {
+    scroll-behavior: smooth;
+}
+    </style>
+    <script>
+        console.log('DOMContentLoaded');
+        
+        // Function to handle image loading errors
+        function handleImageError(img) {
+            const width = img.getAttribute('width') || img.clientWidth || 300;
+            const height = img.getAttribute('height') || img.clientHeight || 200;
+            img.src = "https://placehold.co/" + width + "x" + height;
+            img.alt = 'Placeholder image';
+        }
+
+        // Function to process an image
+        function processImage(img) {
+            console.log('New image found:', img.src);
+            img.addEventListener('error', () => handleImageError(img));
+        }
+
+        // Function to observe DOM changes and attach error handlers to new images
+        function observeImages() {
+            // Create a MutationObserver instance
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    // Check added nodes for images
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.nodeName === 'IMG') {
+                                processImage(node);
+                            }
+                            
+                            // Also check for images within added nodes
+                            const images = node.getElementsByTagName('img');
+                            Array.from(images).forEach(processImage);
+                        }
+                    });
+                });
+            });
+
+            // Start observing the document with the configured parameters
+            const config = { childList: true, subtree: true };
+            observer.observe(document.body, config);
+
+            // Also handle existing images
+            const existingImages = document.getElementsByTagName('img');
+            Array.from(existingImages).forEach(processImage);
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', observeImages);
+        } else {
+            observeImages();
+        }
+    </script>
+</head>
+
+<body class=" leading-normal"> <element id="4ffd9551-b635-494b-a076-1df91561cc5a" data-section-id="4ffd9551-b635-494b-a076-1df91561cc5a">
+
+<htmlCode>
+<div id="root">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+                        100: '#e0f2fe',
+                        200: '#bae6fd',
+                        300: '#7dd3fc',
+                        400: '#38bdf8',
+                        500: '#0ea5e9',
+                        600: '#0284c7',
+                        700: '#0369a1',
+                        800: '#075985',
+                        900: '#0c4a6e',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <header class="bg-primary-600 text-white">
+    <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold">Guru Nanak Hospital</a>
+      <ul class="flex space-x-6">
+        <li><a href="index.html" class="hover:text-primary-200">Home</a></li>
+        <li><a href="#" class="hover:text-primary-200">Services</a></li>
+        <li><a href="about.html" class="hover:text-primary-200">About</a></li>
+        <li><a href="contact.html" class="hover:text-primary-200">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="bg-primary-700 text-white py-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Our Services</h1>
+      <p class="text-xl md:text-2xl mb-8">Comprehensive healthcare solutions for you and your family</p>
+      <a href="#services" class="bg-white text-primary-700 px-6 py-3 rounded-full font-semibold hover:bg-primary-100 transition duration-300">Explore Services</a>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="1b55861e-18cb-47c7-8f7a-fd60a1230504" data-section-id="1b55861e-18cb-47c7-8f7a-fd60a1230504">
+
+<htmlCode>
+<div id="root">
+  <section id="services" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">Our Medical Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Emergency Care</h3>
+          <p class="text-gray-600 mb-4">24/7 emergency services with state-of-the-art facilities and experienced staff.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">General Surgery</h3>
+          <p class="text-gray-600 mb-4">Advanced surgical procedures performed by our expert team of surgeons.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Pediatrics</h3>
+          <p class="text-gray-600 mb-4">Specialized care for infants, children, and adolescents in a child-friendly environment.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Cardiology</h3>
+          <p class="text-gray-600 mb-4">Comprehensive heart care services including diagnostics and interventional procedures.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Orthopedics</h3>
+          <p class="text-gray-600 mb-4">Treatment for bone and joint disorders, sports injuries, and rehabilitation services.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Neurology</h3>
+          <p class="text-gray-600 mb-4">Diagnosis and treatment of disorders related to the nervous system and brain.</p>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="d5af8825-04f2-4106-8fd0-af129aa4aaf4" data-section-id="d5af8825-04f2-4106-8fd0-af129aa4aaf4">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">Featured Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+          <div class="md:w-1/2 p-6">
+            <h3 class="text-2xl font-semibold mb-4 text-primary-700">Advanced Cardiac Care</h3>
+            <p class="text-gray-600 mb-4">Our state-of-the-art cardiac center offers comprehensive heart care services, including diagnostics, interventional procedures, and rehabilitation programs.</p>
+            <ul class="list-disc list-inside text-gray-600 mb-4">
+              <li>24/7 Cardiac Emergency Services</li>
+              <li>Non-invasive Cardiac Imaging</li>
+              <li>Cardiac Catheterization Lab</li>
+              <li>Cardiac Rehabilitation</li>
+            </ul>
+            <!-- <a href="#" class="inline-block bg-primary-600 text-white py-2 px-4 rounded hover:bg-primary-700 transition duration-300">Learn More</a> -->
+          </div>
+          <div class="md:w-1/2 h-64 md:h-auto bg-gray-300"></div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+          <div class="md:w-1/2 p-6">
+            <h3 class="text-2xl font-semibold mb-4 text-primary-700">Specialized Orthopedic Care</h3>
+            <p class="text-gray-600 mb-4">Our orthopedic department provides expert care for all musculoskeletal conditions, from sports injuries to joint replacements.</p>
+            <ul class="list-disc list-inside text-gray-600 mb-4">
+              <li>Advanced Joint Replacement Surgery</li>
+              <li>Sports Medicine and Rehabilitation</li>
+              <li>Spine Surgery and Treatment</li>
+              <li>Pediatric Orthopedics</li>
+            </ul>
+            <!-- <a href="#" class="inline-block bg-primary-600 text-white py-2 px-4 rounded hover:bg-primary-700 transition duration-300">Learn More</a> -->
+          </div>
+          <div class="md:w-1/2 h-64 md:h-auto bg-gray-300"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="65a896a9-d7ab-4045-9be5-ecf68904354d" data-section-id="65a896a9-d7ab-4045-9be5-ecf68904354d">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">Our Departments</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Internal Medicine</h3>
+            <p class="text-gray-600 mb-4">Comprehensive care for adults, managing a wide range of health conditions.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Obstetrics &amp; Gynecology</h3>
+            <p class="text-gray-600 mb-4">Specialized care for women's health, pregnancy, and reproductive issues.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Pediatrics</h3>
+            <p class="text-gray-600 mb-4">Dedicated care for infants, children, and adolescents in a child-friendly environment.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Oncology</h3>
+            <p class="text-gray-600 mb-4">Advanced cancer care with a multidisciplinary approach to treatment and support.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Neurology</h3>
+            <p class="text-gray-600 mb-4">Expert diagnosis and treatment for disorders of the nervous system and brain.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-primary-200"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Dermatology</h3>
+            <p class="text-gray-600 mb-4">Comprehensive care for skin, hair, and nail conditions for patients of all ages.</p>
+            <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">View Details &rarr;</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="e4712c61-ec87-4b77-a0e2-71e4a580eb26" data-section-id="e4712c61-ec87-4b77-a0e2-71e4a580eb26">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">Specialized Treatments</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Minimally Invasive Surgery</h3>
+          <p class="text-gray-600 mb-4">Advanced surgical techniques with smaller incisions, faster recovery, and reduced pain.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Laparoscopic procedures</li>
+            <li>Robotic-assisted surgery</li>
+            <li>Endoscopic treatments</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Cancer Immunotherapy</h3>
+          <p class="text-gray-600 mb-4">Cutting-edge treatments that harness the power of the immune system to fight cancer.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Checkpoint inhibitors</li>
+            <li>CAR T-cell therapy</li>
+            <li>Personalized vaccine treatments</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Advanced Neurosurgery</h3>
+          <p class="text-gray-600 mb-4">State-of-the-art surgical interventions for complex neurological conditions.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Brain tumor resection</li>
+            <li>Spine surgery</li>
+            <li>Stereotactic radiosurgery</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Regenerative Medicine</h3>
+          <p class="text-gray-600 mb-4">Innovative therapies to repair and regenerate damaged tissues and organs.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Stem cell therapy</li>
+            <li>Platelet-rich plasma (PRP) treatments</li>
+            <li>Tissue engineering</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Precision Medicine</h3>
+          <p class="text-gray-600 mb-4">Tailored medical treatments based on individual genetic profiles and biomarkers.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Genomic testing</li>
+            <li>Targeted therapies</li>
+            <li>Personalized treatment plans</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+        <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-semibold mb-4 text-primary-700">Advanced Cardiac Procedures</h3>
+          <p class="text-gray-600 mb-4">Cutting-edge interventions for complex heart conditions and disorders.</p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Transcatheter aortic valve replacement (TAVR)</li>
+            <li>Minimally invasive heart surgery</li>
+            <li>Advanced electrophysiology procedures</li>
+          </ul>
+          <!-- <a href="#" class="text-primary-600 hover:text-primary-700 font-medium">Learn More &rarr;</a> -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="494058e7-be7e-49b8-a76d-846d03a24db1" data-section-id="494058e7-be7e-49b8-a76d-846d03a24db1">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">Our Facilities</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">State-of-the-Art Operating Rooms</h3>
+            <p class="text-gray-600">Equipped with the latest surgical technology for precise and efficient procedures.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Advanced Imaging Center</h3>
+            <p class="text-gray-600">Featuring MRI, CT, PET-CT, and other cutting-edge diagnostic imaging technologies.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Intensive Care Units</h3>
+            <p class="text-gray-600">24/7 monitoring and care for critically ill patients with modern life support systems.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Outpatient Clinics</h3>
+            <p class="text-gray-600">Comfortable and efficient spaces for consultations and minor procedures.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Rehabilitation Center</h3>
+            <p class="text-gray-600">Fully-equipped gym and therapy rooms for physical, occupational, and speech therapies.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-48 bg-gray-300"></div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-primary-700">Emergency Department</h3>
+            <p class="text-gray-600">Rapid response facilities for immediate care in critical situations, open 24/7.</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <!-- <a href="#" class="inline-block bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition duration-300">Take a Virtual Tour</a> -->
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="657f6796-cd39-41be-a8c1-766ba8bec2cb" data-section-id="657f6796-cd39-41be-a8c1-766ba8bec2cb">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-primary-600">
+    <div class="container mx-auto px-4">
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+        <div class="md:flex">
+          <div class="md:w-1/2 p-8 bg-primary-100">
+            <h2 id="book" class="text-3xl font-bold mb-6 text-primary-700">Book an Appointment</h2>
+            <p class="text-gray-600 mb-6">Schedule your visit with our expert medical professionals. We're here to provide you with the best care possible.</p>
+            <ul class="text-gray-600 mb-6">
+              <li class="flex items-center mb-2">
+                <svg class="w-5 h-5 mr-2 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Quick and easy online booking
+              </li>
+              <li class="flex items-center mb-2">
+                <svg class="w-5 h-5 mr-2 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Choose your preferred doctor and time
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 mr-2 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Receive instant confirmation
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2 p-8">
+            <form action="appointment.php" method="post">
+              <div class="mb-4">
+                <label for="full_name" class="block text-sm font-medium text-gray-700 light:text-gray-300">Full Name</label>
+            <input type="text" name="full_name" id="full-name" autocomplete="name" required="" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 light:bg-gray-700 dark:border-gray-600 dark:text-white h-12">
+          </div>
+              <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700 light:text-gray-300">Email</label>
+            <input type="email" name="email" id="email" autocomplete="email" required="" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 light:bg-gray-700 dark:border-gray-600 dark:text-white h-12">
+          </div>
+              <div class="mb-4">
+                <label for="phone" class="block text-sm font-medium text-gray-700 light:text-gray-300">Phone Number</label>
+            <input type="tel" name="phone" id="phone" autocomplete="tel" required="" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 light:bg-gray-700 dark:border-gray-600 dark:text-white h-12">
+         </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="service">Select Service</label>
+                <select name="department" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="service" required>
+                  <option value="">Select a department</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="neurology">Neurology</option>
+              <option value="orthopedics">Orthopedics</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="oncology">Oncology</option>
+              <option value="gynecology">Gynecology</option>
+                </select>
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="date">Preferred Date</label>
+                <input name="preferred_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="date" type="date" required>
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 light:text-gray-300">Additional Information</label>
+                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 light:bg-gray-700 dark:border-gray-600 light:text-white"></textarea>
+              </div>
+    
+              <br>
+              <div class="flex items-center justify-between">
+                <button class="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                  Book Appointment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode></element><element id="522918b9-1af0-41c8-950f-ce8e6beb9d02" data-section-id="522918b9-1af0-41c8-950f-ce8e6beb9d02">
+
+<htmlCode>
+<div id="root">
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12 text-primary-600">What Our Patients Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl mr-4">
+              JS
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg">John Smith</h3>
+              <p class="text-gray-600 text-sm">Cardiac Patient</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"The care I received at Guru Nanak Hospital was exceptional. The cardiac team was professional, compassionate, and thorough. I felt well-informed and supported throughout my treatment."</p>
+          <div class="flex text-yellow-400">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl mr-4">
+              MP
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg">Mary Patel</h3>
+              <p class="text-gray-600 text-sm">Orthopedic Patient</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"I had a knee replacement surgery at Guru Nanak Hospital, and I'm amazed at how smooth the entire process was. The orthopedic team's expertise and the post-op care were outstanding."</p>
+          <div class="flex text-yellow-400">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary-200 rounded-full flex items-center justify-center text-primary-600 font-bold text-xl mr-4">
+              RK
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg">Raj Kumar</h3>
+              <p class="text-gray-600 text-sm">Neurology Patient</p>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">"The neurology department at Guru Nanak Hospital is world-class. They diagnosed and treated my condition with precision and care. I'm grateful for their expertise and support."</p>
+          <div class="flex text-yellow-400">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="text-center mt-12">
+        <a href="#" class="inline-block bg-primary-600 text-white py-3 px-6 rounded-lg hover:bg-primary-700 transition duration-300">Read More Testimonials</a>
+      </div> -->
+    </div>
+  </section>
+</div>
+</htmlCode></element>
+
+<element id="dac041c9-6d56-4bc9-bd44-0e16b25e0999" data-section-id="dac041c9-6d56-4bc9-bd44-0e16b25e0999">
+
+<htmlCode>
+<div id="root">
+  <footer class="bg-primary-800 text-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Guru Nanak Hospital</h3>
+          <p class="mb-4">Providing compassionate care and advanced medical services to our community.</p>
+          <div class="flex space-x-4">
+            <a href="https://facebook.com/guru.nanak.hospital.bidar.2024" class="text-white hover:text-primary-200">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="https://instagram.com/gurunanak_hospital_bidar" class="text-white hover:text-primary-200">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <!-- <a href="#" class="text-white hover:text-primary-200">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+              </svg>
+            </a> -->
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="hover:text-primary-200">Home</a></li>
+            <li><a href="about.html" class="hover:text-primary-200">About Us</a></li>
+            <li><a href="#" class="hover:text-primary-200">Services</a></li>
+            <li><a href="contact.html" class="hover:text-primary-200">Contact Us</a></li>
+          </ul>
+        </div>
+        <!-- <div> -->
+          <!-- <h3 class="text-xl font-semibold mb-4">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-primary-200">Emergency Care</a></li>
+            <li><a href="#" class="hover:text-primary-200">Cardiology</a></li>
+            <li><a href="#" class="hover:text-primary-200">Neurology</a></li>
+            <li><a href="#" class="hover:text-primary-200">Orthopedics</a></li>
+            <li><a href="#" class="hover:text-primary-200">Pediatrics</a></li>
+            <li><a href="#" class="hover:text-primary-200">Oncology</a></li>
+          </ul> -->
+        <!-- </div> -->
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+          <p class="mb-2">Gurudwara Sri Nanak Jhira Sahib, Bidar</p>
+          <p class="mb-2">Phone: +91 - 9606993440</p>
+          <!-- <p class="mb-2">Email: info@gurunanakhospital.com</p>
+          <p class="mb-4">Emergency: (123) 555-0000</p> -->
+          <a href="#book" class="bg-primary-600 text-white py-2 px-4 rounded hover:bg-primary-700 transition duration-300">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-primary-900 py-4">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2024 Guru Nanak Hospital. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</htmlCode></element>
+                    <div id="page_complete">
+                    <script>
+                        console.log('Page complete');
+                    </script>
+                    </body>
+                    </html>
+                

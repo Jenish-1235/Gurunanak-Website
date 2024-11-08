@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+
+    <script src="https://preline.co/assets/vendor/preline/dist/index.js?v=2.5.0"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        section {
+            padding-top: 100px !important;
+            padding-bottom: 100px !important;
+        }
+
+        @media (max-width: 1024px) {
+            section {
+                padding-top: 64px !important;
+                padding-bottom: 64px !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
+        }
+        html {
+    scroll-behavior: smooth;
+}
+    </style>
+    <script>
+        console.log('DOMContentLoaded');
+        
+        // Function to handle image loading errors
+        function handleImageError(img) {
+            const width = img.getAttribute('width') || img.clientWidth || 300;
+            const height = img.getAttribute('height') || img.clientHeight || 200;
+            img.src = "https://placehold.co/" + width + "x" + height;
+            img.alt = 'Placeholder image';
+        }
+
+        // Function to process an image
+        function processImage(img) {
+            console.log('New image found:', img.src);
+            img.addEventListener('error', () => handleImageError(img));
+        }
+
+        // Function to observe DOM changes and attach error handlers to new images
+        function observeImages() {
+            // Create a MutationObserver instance
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    // Check added nodes for images
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.nodeName === 'IMG') {
+                                processImage(node);
+                            }
+                            
+                            // Also check for images within added nodes
+                            const images = node.getElementsByTagName('img');
+                            Array.from(images).forEach(processImage);
+                        }
+                    });
+                });
+            });
+
+            // Start observing the document with the configured parameters
+            const config = { childList: true, subtree: true };
+            observer.observe(document.body, config);
+
+            // Also handle existing images
+            const existingImages = document.getElementsByTagName('img');
+            Array.from(existingImages).forEach(processImage);
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', observeImages);
+        } else {
+            observeImages();
+        }
+    </script>
+</head>
+
+<body class=" leading-normal"> <element id="b9192779-484a-43b5-80f7-6d1634ae1a19" data-section-id="b9192779-484a-43b5-80f7-6d1634ae1a19">
+
+<htmlCode>
+<div id="root">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                        100: '#e0f2fe',
+                        200: '#bae6fd',
+                        300: '#7dd3fc',
+                        400: '#38bdf8',
+                        500: '#0ea5e9',
+                        600: '#0284c7',
+                        700: '#0369a1',
+                        800: '#075985',
+                        900: '#0c4a6e',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
+    <header class="bg-primary-600 text-white">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">Gurunanak Hospital</a>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:text-primary-200">Home</a></li>
+                <li><a href="" class="hover:text-primary-200">About</a></li>
+                <li><a href="services.html" class="hover:text-primary-200">Services</a></li>
+                <li><a href="contact.html" class="hover:text-primary-200">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="bg-primary-700 text-white py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl sm:text-7xl font-extrabold tracking-tight mb-4">About Gurunanak Hospital</h1>
+            <p class="text-xl mb-8">Dedicated to providing compassionate care and healing for over 50 years.</p>
+            <a href="#our-story" class="bg-white text-primary-700 px-6 py-3 rounded-full font-semibold hover:bg-primary-100 transition duration-300">Learn More</a>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="bd2b5b80-4afb-4e82-9d7f-b26470f4491b" data-section-id="bd2b5b80-4afb-4e82-9d7f-b26470f4491b">
+
+<htmlCode>
+<div id="root">
+    <section id="our-story" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-8 text-center">Our Story</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-700">Guru Nanak Hospital is a multi-specialty tertiary care center located in Bidar, Karnataka, known for medical excellence and affordable care. Established in 1969 by Shri Panth Ratan Shiromani Sardar Joga Singh ji, it began as a modest 25-bed facility and has grown to 100 beds, serving patients from all walks of life. Guided by Dr. Balbir Singh and Dr. Reshma Kaur, the hospital is known for compassionate, patient-centric care.</p>
+                    <!-- <p class="text-lg text-gray-700">Our journey began with a small clinic and has grown into a state-of-the-art hospital facility, equipped with the latest medical technology and staffed by dedicated healthcare professionals.</p> -->
+                    <p class="text-lg text-gray-700">Throughout our history, we have remained committed to our core values of compassion, integrity, and innovation, ensuring that every patient receives the best possible care and treatment.</p>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-full h-80 bg-gray-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-600"><img src="images/hospital.jpg"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="da73eb95-90bf-4062-a8e0-d46004fdbf3a" data-section-id="da73eb95-90bf-4062-a8e0-d46004fdbf3a">
+
+<htmlCode>
+<div id="root">
+    <section id="mission-values" class="py-16 bg-primary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">Our Mission & Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-4">Our Mission</h3>
+                    <p class="text-gray-700">To provide exceptional healthcare services with compassion and expertise, improving the health and well-being of our community through innovative medical practices, education, and research.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-4">Our Values</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li>Compassion: Treating every patient with kindness and empathy</li>
+                        <li>Excellence: Striving for the highest standards in medical care</li>
+                        <li>Integrity: Maintaining honesty and ethical practices in all our actions</li>
+                        <li>Innovation: Embracing new technologies and methods to improve patient care</li>
+                        <li>Teamwork: Collaborating effectively to deliver the best outcomes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="187b10cc-e24b-486c-a1a2-16a1adffb584" data-section-id="187b10cc-e24b-486c-a1a2-16a1adffb584">
+
+<htmlCode>
+<div id="root">
+    <section id="leadership-team" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">Our Leadership Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Photo</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 text-center mb-2">Dr. Amrit Singh</h3>
+                    <p class="text-gray-600 text-center mb-4">Chief Executive Officer</p>
+                    <p class="text-gray-700 text-center">With over 25 years of experience in healthcare management, Dr. Singh leads our hospital with vision and dedication.</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Photo</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 text-center mb-2">Dr. Priya Patel</h3>
+                    <p class="text-gray-600 text-center mb-4">Chief Medical Officer</p>
+                    <p class="text-gray-700 text-center">Dr. Patel oversees our medical staff and ensures the highest standards of patient care across all departments.</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Photo</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 text-center mb-2">Rajesh Kumar</h3>
+                    <p class="text-gray-600 text-center mb-4">Chief Financial Officer</p>
+                    <p class="text-gray-700 text-center">Mr. Kumar manages our financial operations, ensuring the hospital's sustainability and growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="e130701e-9d13-4bc5-8e27-5ea0d60c43ee" data-section-id="e130701e-9d13-4bc5-8e27-5ea0d60c43ee">
+
+<htmlCode>
+<div id="root">
+    <section id="facilities" class="py-16 bg-primary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">Our Facilities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Emergency Department</h3>
+                    <p class="text-gray-700">Our 24/7 emergency department is equipped to handle all types of medical emergencies with state-of-the-art technology and skilled staff.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Surgical Suites</h3>
+                    <p class="text-gray-700">Our modern surgical suites feature advanced equipment for a wide range of procedures, ensuring the best outcomes for our patients.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Diagnostic Imaging Center</h3>
+                    <p class="text-gray-700">Our imaging center offers comprehensive diagnostic services including MRI, CT scans, X-rays, and ultrasounds.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Maternity Ward</h3>
+                    <p class="text-gray-700">Our maternity ward provides a comfortable and safe environment for new mothers and their babies, with expert care around the clock.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Intensive Care Unit</h3>
+                    <p class="text-gray-700">Our ICU is staffed by highly trained professionals and equipped with advanced monitoring and life support systems.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-full h-48 bg-gray-300 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-600">Image Placeholder</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary-600 mb-2">Outpatient Clinics</h3>
+                    <p class="text-gray-700">Our outpatient clinics offer a wide range of specialties, providing convenient access to expert care for our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="2f44afbe-7921-42ef-8b57-a194cc491ade" data-section-id="2f44afbe-7921-42ef-8b57-a194cc491ade">
+
+<htmlCode>
+<div id="root">
+    <section id="achievements" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">Our Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md text-center">
+                    <svg class="w-12 h-12 text-primary-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-2">55+ Years</h3>
+                    <p class="text-gray-700">Of Excellence in Healthcare</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md text-center">
+                    <svg class="w-12 h-12 text-primary-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-2">500,000+</h3>
+                    <p class="text-gray-700">Patients Served</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md text-center">
+                    <svg class="w-12 h-12 text-primary-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-2">25+</h3>
+                    <p class="text-gray-700">Specialized Departments</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md text-center">
+                    <svg class="w-12 h-12 text-primary-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-2">10+</h3>
+                    <p class="text-gray-700">National Awards</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <p class="text-lg text-gray-700 mb-6">Our commitment to excellence has been recognized by numerous organizations and institutions.</p>
+                <!-- <a href="#" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition duration-300">Learn More About Our Awards</a> -->
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="b957314c-ee16-47a6-b809-7ae42c6dc969" data-section-id="b957314c-ee16-47a6-b809-7ae42c6dc969">
+
+<htmlCode>
+<div id="root">
+    <section id="community-impact" class="py-16 bg-primary-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">Our Community Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-700">At Gurunanak Hospital, we believe in giving back to the community that has supported us for over five decades. Our commitment extends beyond the walls of our hospital, reaching out to make a positive impact on the health and well-being of our entire community.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-primary-600 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Free health camps and screenings in underserved areas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-primary-600 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Educational programs on health and wellness in schools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-primary-600 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Support for local health initiatives and charities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-primary-600 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">Environmental sustainability programs within our facilities</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-primary-600 mb-4">Community Impact in Numbers</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-4xl font-bold text-primary-600">50,000+</p>
+                            <p class="text-gray-700">People served through free health camps</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-primary-600">100+</p>
+                            <p class="text-gray-700">Schools reached through health education programs</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-primary-600">₹5 Crore+</p>
+                            <p class="text-gray-700">Donated to local health initiatives</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-primary-600">30%</p>
+                            <p class="text-gray-700">Reduction in our carbon footprint since 2015</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a href="https://instagram.com/gurunanak_hospital_bidar" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition duration-300">Join Our Community Initiatives</a>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="6bd11c54-f277-492f-90a4-d7b9eb544b97" data-section-id="6bd11c54-f277-492f-90a4-d7b9eb544b97">
+
+<htmlCode>
+<div id="root">
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl sm:text-5xl font-bold text-primary-600 mb-12 text-center">What Our Patients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4 flex items-center justify-center">
+                            <span class="text-gray-600 text-xs">Photo</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-primary-600">Rajesh Sharma</h4>
+                            <p class="text-sm text-gray-600">Cardiac Patient</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"The care I received at Gurunanak Hospital was exceptional. The doctors and nurses were not only highly skilled but also incredibly compassionate. They made my recovery journey so much easier."</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4 flex items-center justify-center">
+                            <span class="text-gray-600 text-xs">Photo</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-primary-600">Priya Patel</h4>
+                            <p class="text-sm text-gray-600">Maternity Patient</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Having my baby at Gurunanak Hospital was a wonderful experience. The maternity staff was supportive, knowledgeable, and made me feel safe throughout my stay. I couldn't have asked for better care."</p>
+                </div>
+                <div class="bg-primary-50 p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4 flex items-center justify-center">
+                            <span class="text-gray-600 text-xs">Photo</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-primary-600">Amit Singh</h4>
+                            <p class="text-sm text-gray-600">Orthopedic Patient</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"After my accident, I was worried about my recovery. The orthopedic team at Gurunanak Hospital not only provided excellent medical care but also gave me the confidence to get back on my feet. I'm truly grateful."</p>
+                </div>
+            <!-- </div>
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block bg-primary-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-700 transition duration-300">Read More Stories</a>
+            </div> -->
+        </div>
+    </section>
+</div>
+</htmlCode></element><element id="0df2cb0d-eadb-47f9-89e9-80f5e83578bd" data-section-id="0df2cb0d-eadb-47f9-89e9-80f5e83578bd">
+
+<htmlCode>
+<div id="root">
+    <section id="contact-cta" class="py-16 bg-primary-600">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-5xl font-bold text-white mb-6">Ready to Experience Our Care?</h2>
+                <p class="text-xl text-white mb-8">Whether you have questions about our services or want to schedule an appointment, our team is here to help you.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="index.html#book" class="inline-block bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-primary-100 transition duration-300">
+                        Schedule Appointment
+                    </a>
+                    <a href="contact.html" class="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition duration-300">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</htmlCode></element>
+                    <div id="page_complete">
+                    <script>
+                        console.log('Page complete');
+                    </script>
+                    </body>
+                    </html>
+                
